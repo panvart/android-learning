@@ -8,7 +8,7 @@
     android:orientation="vertical">
 
     <EditText
-        android:text="0123456789"
+        android:id="@+id/calc_results_et"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:minLines="3"
@@ -34,13 +34,13 @@
             style="@style/CalcButton"/>
 
         <Button
-            android:text="+/-"
-            android:id="@+id/calc_btn_plus_minus"
-            style="@style/CalcButton.CalcOperator"/>
+            android:text="0"
+            android:id="@+id/calc_btn_0"
+            style="@style/CalcButton"/>
 
         <Button
-            android:text="%"
-            android:id="@+id/calc_btn_mod"
+            android:text="="
+            android:id="@+id/calc_btn_equal"
             style="@style/CalcButton.CalcOperator"/>
 
         <Button
@@ -75,7 +75,7 @@
 
         <Button
             android:text="X"
-            android:id="@+id/calc_btn_x"
+            android:id="@+id/calc_btn_product"
             style="@style/CalcButton.CalcOperator"/>
 
     </LinearLayout>
