@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/colorPrimaryDark"
+    android:padding="8dp"
+    android:orientation="vertical">
+
+    <EditText
+        android:text="0123456789"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:minLines="3"
+        android:textAppearance="@style/TextAppearance.AppCompat.Large"
+        android:textSize="32sp"
+        android:gravity="right|bottom"
+        android:padding="8dp"
+        android:paddingBottom="0dp"
+        android:background="@color/colorWhite"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:background="#FFF"
+        android:layout_marginTop="8dp"
+        android:weightSum="80">
+
+        <Button
+            android:text="C"
+            android:id="@+id/calc_btn_c"
+            android:textStyle="bold"
+            style="@style/CalcButton"/>
+
+        <Button
+            android:text="+/-"
+            android:id="@+id/calc_btn_plus_minus"
+            style="@style/CalcButton.CalcOperator"/>
+
+        <Button
+            android:text="%"
+            android:id="@+id/calc_btn_mod"
+            style="@style/CalcButton.CalcOperator"/>
+
+        <Button
+            android:text="/"
+            android:id="@+id/calc_btn_divide"
+            style="@style/CalcButton.CalcOperator"/>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:background="#FFF"
+        android:layout_marginTop="8dp"
+        android:weightSum="80">
+
+        <Button
+            android:text="7"
+            android:id="@+id/calc_btn_7"
+            style="@style/CalcButton"/>
+
+        <Button
+            android:text="8"
+            android:id="@+id/calc_btn_8"
+            style="@style/CalcButton"/>
+
+        <Button
+            android:text="9"
+            android:id="@+id/calc_btn_9"
+            style="@style/CalcButton"/>
+
+        <Button
+            android:text="X"
+            android:id="@+id/calc_btn_x"
+            style="@style/CalcButton.CalcOperator"/>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:background="#FFF"
+        android:layout_marginTop="8dp"
+        android:weightSum="80">
+
+        <Button
+            android:text="4"
+            android:id="@+id/calc_btn_4"
+            style="@style/CalcButton"/>
+
+        <Button
+            android:text="5"
+            android:id="@+id/calc_btn_5"
+            style="@style/CalcButton"/>
+
+        <Button
+            android:text="6"
+            android:id="@+id/calc_btn_6"
+            style="@style/CalcButton"/>
+
+        <Button
+            android:text="-"
+            android:id="@+id/calc_btn_minus"
+            style="@style/CalcButton.CalcOperator"/>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:background="#FFF"
+        android:layout_marginTop="8dp"
+        android:weightSum="80">
+
+        <Button
+            android:text="1"
+            android:id="@+id/calc_btn_1"
+            style="@style/CalcButton"/>
+
+        <Button
+            android:text="2"
+            android:id="@+id/calc_btn_2"
+            style="@style/CalcButton"/>
+
+        <Button
+            android:text="3"
+            android:id="@+id/calc_btn_3"
+            style="@style/CalcButton"/>
+
+        <Button
+            android:text="+"
+            android:id="@+id/calc_btn_plus"
+            style="@style/CalcButton.CalcOperator"/>
+
+    </LinearLayout>
+
+</LinearLayout>
