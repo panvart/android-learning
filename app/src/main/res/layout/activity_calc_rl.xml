@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <EditText
+        android:id="@+id/calc_results_et"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:minLines="3"
+        android:textAppearance="@style/TextAppearance.AppCompat.Large"
+        android:textSize="32sp"
+        android:gravity="right|bottom"
+        android:padding="8dp"
+        android:paddingBottom="0dp"
+        android:inputType="numberDecimal"
+        android:enabled="false"
+        android:textColor="@color/colorPrimaryDark"
+        android:background="@color/colorWhite"
+        android:layout_alignParentTop="true"/>
+
+    <!--
+
+    //TODO: KEY PAD using Relative Layout.
+
+    -->
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="@dimen/fab_margin"
+        android:layout_below="@id/calc_results_et">
+
+        <Button
+            android:text="x"
+            android:id="@+id/calc_btn_product"
+            android:layout_above="@id/calc_btn_equal"
+            android:layout_centerHorizontal="true"
+            style="@style/CalcButton.CalcOperator.ForRelativeLayout"/>
+
+        <Button
+            android:text="+"
+            android:id="@+id/calc_btn_plus"
+            android:layout_toLeftOf="@+id/calc_btn_equal"
+            android:layout_centerVertical="true"
+            style="@style/CalcButton.CalcOperator.ForRelativeLayout"/>
+
+        <Button
+            android:text="-"
+            android:id="@+id/calc_btn_minus"
+            android:layout_toRightOf="@id/calc_btn_equal"
+            android:layout_centerVertical="true"
+            style="@style/CalcButton.CalcOperator.ForRelativeLayout"/>
+
+        <Button
+            android:text="="
+            android:id="@id/calc_btn_equal"
+            android:layout_centerInParent="true"
+            style="@style/CalcButton.CalcOperator.ForRelativeLayout"/>
+
+
+        <Button
+            android:text="/"
+            android:id="@+id/calc_btn_divide"
+            android:layout_below="@id/calc_btn_equal"
+            android:layout_centerHorizontal="true"
+            style="@style/CalcButton.CalcOperator.ForRelativeLayout"/>
+
+    </RelativeLayout>
+
+</RelativeLayout>

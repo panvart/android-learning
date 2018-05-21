@@ -19,6 +19,11 @@ public class CalcActivity extends AppCompatActivity implements View.OnClickListe
 
     private static final String TAG = "CALCACT_";
 
+    private static final char ADDITION = '+';
+    private static final char SUBTRACTION = '-';
+    private static final char DIVISION = '/';
+    private static final char PRODUCT = 'x';
+
     class Equation{
 
         double operandLeft;
@@ -161,7 +166,6 @@ public class CalcActivity extends AppCompatActivity implements View.OnClickListe
 
     }
 
-
     @Override
     public void onClick(View v) {
 
@@ -221,28 +225,28 @@ public class CalcActivity extends AppCompatActivity implements View.OnClickListe
                 // Hint: user CurrResult last operator or use TextWatcher
                 // Color for operator using SPAN
                 equation.setOperand(currResult.toString().trim());
-                currResult.append(" + ");
-                equation.setOperator('+');
+                currResult.append(" "+ADDITION+" ");
+                equation.setOperator(ADDITION);
 
                 break;
 
             case R.id.calc_btn_minus:
                 equation.setOperand(currResult.toString().trim());
-                currResult.append(" - ");
-                equation.setOperator('-');
+                currResult.append(" "+SUBTRACTION+" ");
+                equation.setOperator(SUBTRACTION);
                 break;
 
             case R.id.calc_btn_divide:
                 equation.setOperand(currResult.toString().trim());
-                currResult.append(" / ");
-                equation.setOperator('/');
+                currResult.append(" "+DIVISION+" ");
+                equation.setOperator(DIVISION);
                 break;
 
             case R.id.calc_btn_product:
 
                 equation.setOperand(currResult.toString().trim());
-                currResult.append(" x ");
-                equation.setOperator('x');
+                currResult.append(" "+PRODUCT+" ");
+                equation.setOperator(PRODUCT);
                 break;
 
             default:
@@ -265,13 +269,16 @@ public class CalcActivity extends AppCompatActivity implements View.OnClickListe
 
         String equation = etResult.getText().toString();
 
+//        "111 + 34 = ";
+
+
         Log.d(TAG, "Curr String: "+equation);
 
         if(equation.length()>0
-            && (equation.trim().endsWith("+")
-                || equation.trim().endsWith("-")
-                || equation.trim().endsWith("/")
-                || equation.trim().endsWith("x")
+            && (equation.trim().endsWith(String.valueOf(ADDITION))
+                || equation.trim().endsWith(String.valueOf(SUBTRACTION))
+                || equation.trim().endsWith(String.valueOf(PRODUCT))
+                || equation.trim().endsWith(String.valueOf(DIVISION))
                 || equation.trim().endsWith("="))) {
 
             equation = equation.trim();
@@ -287,7 +294,6 @@ public class CalcActivity extends AppCompatActivity implements View.OnClickListe
         throw new IllegalArgumentException("Invalid last number");
 
     }
-
 
     /**
      *  After evaluating INFIX expression two vars at a time
@@ -317,7 +323,5 @@ public class CalcActivity extends AppCompatActivity implements View.OnClickListe
         }
 
     }
-
-
 
 }
