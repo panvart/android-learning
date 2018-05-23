@@ -1,11 +1,30 @@
 package com.example.myapplication;
 
+import android.database.DataSetObserver;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.RecyclerView;
 import android.util.Log;
+import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
+import android.view.ViewGroup;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
+import android.widget.BaseAdapter;
+import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.EditText;
+import android.widget.SimpleAdapter;
+import android.widget.Spinner;
+import android.widget.SpinnerAdapter;
+
+import java.io.PipedOutputStream;
+import java.lang.reflect.Array;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 
 /**
  * Created by Pankaj on 09/05/18.
@@ -23,6 +42,8 @@ public class CalcActivity extends AppCompatActivity implements View.OnClickListe
     private static final char SUBTRACTION = '-';
     private static final char DIVISION = '/';
     private static final char PRODUCT = 'x';
+
+    Spinner spnrEquations;
 
     class Equation{
 
@@ -142,6 +163,18 @@ public class CalcActivity extends AppCompatActivity implements View.OnClickListe
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_calc);
 
+        // RECYCLER VIEW
+
+        // TODO: HTTP Requests; POST GET;
+
+        // TODO: SHOW SHIFT REPORT Working - HTTP Request Response - JSON;
+
+        // TODO: Local Storage
+
+        // TODO: Background Services
+
+        // TODO: ASYNC Tasks
+
         equation = new Equation();
 
         etResult = findViewById(R.id.calc_results_et);
@@ -163,6 +196,65 @@ public class CalcActivity extends AppCompatActivity implements View.OnClickListe
         findViewById(R.id.calc_btn_divide).setOnClickListener(this);
         findViewById(R.id.calc_btn_equal).setOnClickListener(this);
         findViewById(R.id.calc_btn_c).setOnClickListener(this);
+
+        initSpinner();
+
+    }
+
+    private void initSpinner(){
+
+        spnrEquations = findViewById(R.id.calc_spinner);
+
+
+        final List<String> mDataset = Arrays.asList("A", "B", "C", "D", "E");
+
+        BaseAdapter bAdapter = new BaseAdapter() {
+            @Override
+            public int getCount() {
+                return mDataset.size();
+            }
+
+            @Override
+            public Object getItem(int position) {
+                return mDataset.get(position);
+            }
+
+            @Override
+            public long getItemId(int position) {
+                return 0;
+            }
+
+            @Override
+            public View getView(int position, View convertView, ViewGroup parent) {
+                LayoutInflater li = (CalcActivity.this).getLayoutInflater();
+                View row = li.inflate(R.layout.row_spinner_1, parent, false);
+                ((CheckBox)(row.findViewById(R.id.row_spinner_checkbox))).setText((String)getItem(position));
+//                row.setOnClickListener(new View.OnClickListener() {
+//                    @Override
+//                    public void onClick(View v) {
+//                        Log.d(TAG, "Clicked CheckBox");
+//                    }
+//                });
+                return row;
+            }
+
+        };
+
+        spnrEquations.setAdapter(bAdapter);
+
+        spnrEquations.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+
+                Log.d(TAG, String.format("Clicked - %d", position));
+
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
 
     }
 

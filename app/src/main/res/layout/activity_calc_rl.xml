@@ -1,8 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <Spinner
+        android:id="@+id/spinner"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="@dimen/fab_margin"/>
 
     <EditText
         android:id="@+id/calc_results_et"
@@ -18,55 +25,252 @@
         android:enabled="false"
         android:textColor="@color/colorPrimaryDark"
         android:background="@color/colorWhite"
-        android:layout_alignParentTop="true"/>
-
-    <!--
-
-    //TODO: KEY PAD using Relative Layout.
-
-    -->
+        android:layout_below="@id/spinner"
+        android:layout_marginTop="@dimen/fab_margin"/>
 
     <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_marginTop="@dimen/fab_margin"
-        android:layout_below="@id/calc_results_et">
+        android:id="@+id/rl1"
+        android:layout_below="@id/calc_results_et"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:padding="@dimen/fab_margin"
+        android:minHeight="400dp"
+        android:background="@color/colorAccent">
 
-        <Button
-            android:text="x"
-            android:id="@+id/calc_btn_product"
-            android:layout_above="@id/calc_btn_equal"
-            android:layout_centerHorizontal="true"
-            style="@style/CalcButton.CalcOperator.ForRelativeLayout"/>
-
-        <Button
-            android:text="+"
-            android:id="@+id/calc_btn_plus"
-            android:layout_toLeftOf="@+id/calc_btn_equal"
-            android:layout_centerVertical="true"
-            style="@style/CalcButton.CalcOperator.ForRelativeLayout"/>
-
-        <Button
-            android:text="-"
-            android:id="@+id/calc_btn_minus"
-            android:layout_toRightOf="@id/calc_btn_equal"
-            android:layout_centerVertical="true"
-            style="@style/CalcButton.CalcOperator.ForRelativeLayout"/>
-
-        <Button
-            android:text="="
-            android:id="@id/calc_btn_equal"
-            android:layout_centerInParent="true"
-            style="@style/CalcButton.CalcOperator.ForRelativeLayout"/>
+        <!--<TextView-->
+            <!--android:id="@+id/text1"-->
+            <!--android:text="Android Development Tutorial 1 2 3 5"-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:textColor="@color/colorWhite"/>-->
 
 
         <Button
-            android:text="/"
-            android:id="@+id/calc_btn_divide"
-            android:layout_below="@id/calc_btn_equal"
-            android:layout_centerHorizontal="true"
-            style="@style/CalcButton.CalcOperator.ForRelativeLayout"/>
+        android:text="x"
+        android:id="@+id/calc_btn_product"
+        android:layout_above="@id/calc_btn_equal"
+        android:layout_centerHorizontal="true"
+        style="@style/CalcButton.CalcOperator.ForRelativeLayout"/>
+
+        <Button
+        android:text="+"
+        android:id="@+id/calc_btn_plus"
+        android:layout_toLeftOf="@+id/calc_btn_equal"
+        android:layout_centerVertical="true"
+        style="@style/CalcButton.CalcOperator.ForRelativeLayout"/>
+
+        <Button
+        android:text="---"
+        android:id="@+id/calc_btn_minus"
+        android:layout_toRightOf="@id/calc_btn_equal"
+        android:layout_centerVertical="true"
+        style="@style/CalcButton.CalcOperator.ForRelativeLayout"/>
+
+        <Button
+        android:text="============="
+        android:id="@id/calc_btn_equal"
+        android:layout_centerInParent="true"
+        style="@style/CalcButton.CalcOperator.ForRelativeLayout"/>
+
+
+        <Button
+        android:text="/"
+        android:id="@+id/calc_btn_divide"
+        android:layout_below="@id/calc_btn_equal"
+        android:layout_centerHorizontal="true"
+        style="@style/CalcButton.CalcOperator.ForRelativeLayout"/>
+
 
     </RelativeLayout>
+
+    <LinearLayout
+        android:id="@+id/ll"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_toRightOf="@id/rl1"
+        android:background="@color/colorPrimary"
+        android:padding="@dimen/fab_margin"
+        android:layout_below="@id/calc_results_et"
+        android:orientation="horizontal"
+        >
+
+        <!--<TextView-->
+            <!--android:id="@+id/text2"-->
+            <!--android:text="Android Development Tutorial 1 2 3"-->
+            <!--android:layout_below="@id/calc_results_et"-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:textColor="@color/colorWhite"/>-->
+
+        <Button
+            android:text="0"
+            android:id="@+id/calc_btn_0"
+            style="@style/CalcButton.ForRelativeLayout"/>
+
+        <Button
+            android:text="1"
+            android:id="@+id/calc_btn_1"
+            style="@style/CalcButton.ForRelativeLayout"/>
+
+
+    </LinearLayout>
+
+    <!--<RelativeLayout-->
+        <!--android:id="@+id/calc_operators"-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="match_parent"-->
+        <!--android:layout_alignParentRight="true"-->
+        <!--android:layout_toRightOf="@id/calc_keypad"-->
+        <!--android:layout_below="@id/calc_results_et">-->
+
+        <!--<Button-->
+            <!--android:text="x"-->
+            <!--android:id="@+id/calc_btn_product"-->
+            <!--android:layout_above="@id/calc_btn_equal"-->
+            <!--android:layout_centerHorizontal="true"-->
+            <!--style="@style/CalcButton.CalcOperator.ForRelativeLayout"/>-->
+
+        <!--<Button-->
+            <!--android:text="+"-->
+            <!--android:id="@+id/calc_btn_plus"-->
+            <!--android:layout_toLeftOf="@+id/calc_btn_equal"-->
+            <!--android:layout_centerVertical="true"-->
+            <!--style="@style/CalcButton.CalcOperator.ForRelativeLayout"/>-->
+
+        <!--<Button-->
+            <!--android:text="-"-->
+            <!--android:id="@+id/calc_btn_minus"-->
+            <!--android:layout_toRightOf="@id/calc_btn_equal"-->
+            <!--android:layout_centerVertical="true"-->
+            <!--style="@style/CalcButton.CalcOperator.ForRelativeLayout"/>-->
+
+        <!--<Button-->
+            <!--android:text="="-->
+            <!--android:id="@id/calc_btn_equal"-->
+            <!--android:layout_centerInParent="true"-->
+            <!--style="@style/CalcButton.CalcOperator.ForRelativeLayout"/>-->
+
+
+        <!--<Button-->
+            <!--android:text="/"-->
+            <!--android:id="@+id/calc_btn_divide"-->
+            <!--android:layout_below="@id/calc_btn_equal"-->
+            <!--android:layout_centerHorizontal="true"-->
+            <!--style="@style/CalcButton.CalcOperator.ForRelativeLayout"/>-->
+
+    <!--</RelativeLayout>-->
+
+    <!--<LinearLayout-->
+        <!--android:id="@+id/calc_keypad"-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="400dp"-->
+        <!--android:background="@color/colorPrimaryDark"-->
+        <!--android:padding="8dp"-->
+        <!--android:layout_below="@id/calc_results_et"-->
+        <!--android:layout_alignParentLeft="true"-->
+        <!--android:orientation="vertical">-->
+
+
+        <!--&lt;!&ndash;<LinearLayout&ndash;&gt;-->
+        <!--&lt;!&ndash;android:layout_width="wrap_content"&ndash;&gt;-->
+        <!--&lt;!&ndash;android:layout_height="wrap_content"&ndash;&gt;-->
+        <!--&lt;!&ndash;android:orientation="horizontal"&ndash;&gt;-->
+        <!--&lt;!&ndash;android:background="#FFF"&ndash;&gt;-->
+        <!--&lt;!&ndash;android:layout_marginTop="8dp"&ndash;&gt;-->
+        <!--&lt;!&ndash;android:weightSum="80">&ndash;&gt;-->
+
+        <!--&lt;!&ndash;<Button&ndash;&gt;-->
+        <!--&lt;!&ndash;android:text="0"&ndash;&gt;-->
+        <!--&lt;!&ndash;android:id="@+id/calc_btn_0"&ndash;&gt;-->
+        <!--&lt;!&ndash;style="@style/CalcButton.ForRelativeLayout"/>&ndash;&gt;-->
+
+        <!--&lt;!&ndash;<Button&ndash;&gt;-->
+        <!--&lt;!&ndash;android:text="1"&ndash;&gt;-->
+        <!--&lt;!&ndash;android:id="@+id/calc_btn_1"&ndash;&gt;-->
+        <!--&lt;!&ndash;style="@style/CalcButton.ForRelativeLayout"/>&ndash;&gt;-->
+
+        <!--&lt;!&ndash;</LinearLayout>&ndash;&gt;-->
+
+        <!--&lt;!&ndash;<LinearLayout&ndash;&gt;-->
+        <!--&lt;!&ndash;android:layout_width="wrap_content"&ndash;&gt;-->
+        <!--&lt;!&ndash;android:layout_height="wrap_content"&ndash;&gt;-->
+        <!--&lt;!&ndash;android:orientation="horizontal"&ndash;&gt;-->
+        <!--&lt;!&ndash;android:background="#FFF"&ndash;&gt;-->
+        <!--&lt;!&ndash;android:layout_marginTop="8dp"&ndash;&gt;-->
+        <!--&lt;!&ndash;android:weightSum="80">&ndash;&gt;-->
+
+        <!--&lt;!&ndash;<Button&ndash;&gt;-->
+        <!--&lt;!&ndash;android:text="2"&ndash;&gt;-->
+        <!--&lt;!&ndash;android:id="@+id/calc_btn_2"&ndash;&gt;-->
+        <!--&lt;!&ndash;style="@style/CalcButton.ForRelativeLayout"/>&ndash;&gt;-->
+
+        <!--&lt;!&ndash;<Button&ndash;&gt;-->
+        <!--&lt;!&ndash;android:text="3"&ndash;&gt;-->
+        <!--&lt;!&ndash;android:id="@+id/calc_btn_3"&ndash;&gt;-->
+        <!--&lt;!&ndash;style="@style/CalcButton.ForRelativeLayout"/>&ndash;&gt;-->
+
+        <!--&lt;!&ndash;</LinearLayout>&ndash;&gt;-->
+
+        <!--&lt;!&ndash;<LinearLayout&ndash;&gt;-->
+        <!--&lt;!&ndash;android:layout_width="wrap_content"&ndash;&gt;-->
+        <!--&lt;!&ndash;android:layout_height="wrap_content"&ndash;&gt;-->
+        <!--&lt;!&ndash;android:orientation="horizontal"&ndash;&gt;-->
+        <!--&lt;!&ndash;android:background="#FFF"&ndash;&gt;-->
+        <!--&lt;!&ndash;android:layout_marginTop="8dp"&ndash;&gt;-->
+        <!--&lt;!&ndash;android:weightSum="80">&ndash;&gt;-->
+
+        <!--&lt;!&ndash;<Button&ndash;&gt;-->
+        <!--&lt;!&ndash;android:text="4"&ndash;&gt;-->
+        <!--&lt;!&ndash;android:id="@+id/calc_btn_4"&ndash;&gt;-->
+        <!--&lt;!&ndash;style="@style/CalcButton.ForRelativeLayout"/>&ndash;&gt;-->
+
+        <!--&lt;!&ndash;<Button&ndash;&gt;-->
+        <!--&lt;!&ndash;android:text="5"&ndash;&gt;-->
+        <!--&lt;!&ndash;android:id="@+id/calc_btn_5"&ndash;&gt;-->
+        <!--&lt;!&ndash;style="@style/CalcButton.ForRelativeLayout"/>&ndash;&gt;-->
+
+        <!--&lt;!&ndash;</LinearLayout>&ndash;&gt;-->
+
+        <!--&lt;!&ndash;<LinearLayout&ndash;&gt;-->
+        <!--&lt;!&ndash;android:layout_width="wrap_content"&ndash;&gt;-->
+        <!--&lt;!&ndash;android:layout_height="wrap_content"&ndash;&gt;-->
+        <!--&lt;!&ndash;android:orientation="horizontal"&ndash;&gt;-->
+        <!--&lt;!&ndash;android:background="#FFF"&ndash;&gt;-->
+        <!--&lt;!&ndash;android:layout_marginTop="8dp"&ndash;&gt;-->
+        <!--&lt;!&ndash;android:weightSum="80">&ndash;&gt;-->
+
+        <!--&lt;!&ndash;<Button&ndash;&gt;-->
+        <!--&lt;!&ndash;android:text="6"&ndash;&gt;-->
+        <!--&lt;!&ndash;android:id="@+id/calc_btn_6"&ndash;&gt;-->
+        <!--&lt;!&ndash;style="@style/CalcButton.ForRelativeLayout"/>&ndash;&gt;-->
+
+        <!--&lt;!&ndash;<Button&ndash;&gt;-->
+        <!--&lt;!&ndash;android:text="7"&ndash;&gt;-->
+        <!--&lt;!&ndash;android:id="@+id/calc_btn_7"&ndash;&gt;-->
+        <!--&lt;!&ndash;style="@style/CalcButton.ForRelativeLayout"/>&ndash;&gt;-->
+
+        <!--&lt;!&ndash;</LinearLayout>&ndash;&gt;-->
+
+        <!--&lt;!&ndash;<LinearLayout&ndash;&gt;-->
+        <!--&lt;!&ndash;android:layout_width="wrap_content"&ndash;&gt;-->
+        <!--&lt;!&ndash;android:layout_height="wrap_content"&ndash;&gt;-->
+        <!--&lt;!&ndash;android:orientation="horizontal"&ndash;&gt;-->
+        <!--&lt;!&ndash;android:background="#FFF"&ndash;&gt;-->
+        <!--&lt;!&ndash;android:layout_marginTop="8dp"&ndash;&gt;-->
+        <!--&lt;!&ndash;android:weightSum="80">&ndash;&gt;-->
+
+        <!--&lt;!&ndash;<Button&ndash;&gt;-->
+        <!--&lt;!&ndash;android:text="8"&ndash;&gt;-->
+        <!--&lt;!&ndash;android:id="@+id/calc_btn_8"&ndash;&gt;-->
+        <!--&lt;!&ndash;style="@style/CalcButton.ForRelativeLayout"/>&ndash;&gt;-->
+
+        <!--&lt;!&ndash;<Button&ndash;&gt;-->
+        <!--&lt;!&ndash;android:text="9"&ndash;&gt;-->
+        <!--&lt;!&ndash;android:id="@+id/calc_btn_9"&ndash;&gt;-->
+        <!--&lt;!&ndash;style="@style/CalcButton.ForRelativeLayout"/>&ndash;&gt;-->
+
+        <!--&lt;!&ndash;</LinearLayout>&ndash;&gt;-->
+
+    <!--</LinearLayout>-->
 
 </RelativeLayout>

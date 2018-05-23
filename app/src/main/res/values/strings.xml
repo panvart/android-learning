@@ -1,4 +1,15 @@
 <resources>
     <string name="app_name">My Application</string>
     <string name="title_activity_next">NextActivity</string>
+
+    <string-array name="mathematical_equations">
+
+        <item>Quadratic Equations</item>
+        <item>Cubic Equations</item>
+        <item>Linear Equations</item>
+        <item>Non-Linear Equations</item>
+        <item>Logarithmic Equations</item>
+
+    </string-array>
+
 </resources>
