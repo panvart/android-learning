@@ -3,6 +3,7 @@ package com.example.myapplication;
 import android.database.DataSetObserver;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
@@ -15,7 +16,9 @@ import android.widget.ArrayAdapter;
 import android.widget.BaseAdapter;
 import android.widget.Button;
 import android.widget.CheckBox;
+import android.widget.CompoundButton;
 import android.widget.EditText;
+import android.widget.SeekBar;
 import android.widget.SimpleAdapter;
 import android.widget.Spinner;
 import android.widget.SpinnerAdapter;
@@ -197,14 +200,31 @@ public class CalcActivity extends AppCompatActivity implements View.OnClickListe
         findViewById(R.id.calc_btn_equal).setOnClickListener(this);
         findViewById(R.id.calc_btn_c).setOnClickListener(this);
 
+        CheckBox cb1 = findViewById(R.id.calc_checkbox_1);
+        CheckBox cb2 = findViewById(R.id.calc_checkbox_2);
+
         initSpinner();
+
+        cb1.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+
+                if(isChecked) {
+                    etResult.setBackgroundColor(ContextCompat.getColor(CalcActivity.this, R.color.colorAccent));
+                    spnrEquations.setVisibility(View.GONE);
+                }
+                else {
+                    etResult.setBackgroundColor(ContextCompat.getColor(CalcActivity.this, R.color.colorWhite));
+                    spnrEquations.setVisibility(View.VISIBLE);
+                }
+            }
+        });
 
     }
 
     private void initSpinner(){
 
         spnrEquations = findViewById(R.id.calc_spinner);
-
 
         final List<String> mDataset = Arrays.asList("A", "B", "C", "D", "E");
 

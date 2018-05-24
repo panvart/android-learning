@@ -3,7 +3,7 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:padding="60dp"
+    android:padding="8dp"
     android:orientation="horizontal">
 
     <CheckBox
@@ -12,7 +12,6 @@
         android:layout_height="wrap_content"
         android:text="Test"
         android:textStyle="bold"
-        android:padding="@dimen/fab_margin"
         android:focusable="false"/>
 
     <TextView
