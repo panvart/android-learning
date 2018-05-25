@@ -21,12 +21,10 @@ import static android.support.v7.widget.RecyclerView.*;
 
 public class StocksAdapter extends RecyclerView.Adapter<StocksAdapter.StocksViewHolder>{
 
-    List<StocksActivity.Stock> mDataset;
+    List<Stock> mDataset;
     Context context;
 
-
-
-    public StocksAdapter(List<StocksActivity.Stock> mDataset, Context context) {
+    public StocksAdapter(List<Stock> mDataset, Context context) {
         this.mDataset = mDataset;
         this.context = context;
     }
@@ -45,19 +43,19 @@ public class StocksAdapter extends RecyclerView.Adapter<StocksAdapter.StocksView
     @Override
     public void onBindViewHolder(StocksViewHolder holder, int position) {
 
-        final StocksActivity.Stock currStock = mDataset.get(position);
+        final Stock currStock = mDataset.get(position);
 
         if(currStock!=null) {
 
             holder.getTvCountry().setText(currStock.getCountry());
             holder.getTvName().setText(currStock.getName());
             holder.getBtnPrice().setText(String.valueOf(currStock.getPrice()));
-            holder.getBtnPrice().setOnClickListener(new OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    Toast.makeText(context, "Stock: "+currStock.toString(), Toast.LENGTH_SHORT).show();
-                }
-            });
+//            holder.getBtnPrice().setOnClickListener(new OnClickListener() {
+//                @Override
+//                public void onClick(View v) {
+//                    Toast.makeText(context, "Stock: "+currStock.toString(), Toast.LENGTH_SHORT).show();
+//                }
+//            });
 
         }
 

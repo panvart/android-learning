@@ -24,6 +24,7 @@ public class NextActivity extends AppCompatActivity {
                         .setAction("Action", null).show();
             }
         });
+
     }
 
 }

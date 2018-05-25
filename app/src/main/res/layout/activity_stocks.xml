@@ -1,8 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:paddingBottom="@dimen/fab_margin">
+    android:layout_height="match_parent">
 
     <TextView
         android:id="@+id/stocks_title"
@@ -20,7 +19,16 @@
         android:id="@+id/stocks_recyclerview"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@id/stocks_title"/>
+        android:layout_below="@id/stocks_title"
+        android:layout_above="@+id/stocks_btn_remove_stock"/>
+    
+    <Button
+        android:id="@+id/stocks_btn_remove_stock"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="REMOVE RANDOM STOCK"
+        style="@style/CalcButton.CalcOperator.ForRelativeLayout"
+        android:layout_alignParentBottom="true"/>
 
 
 </RelativeLayout>
