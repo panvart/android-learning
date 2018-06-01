@@ -168,11 +168,11 @@ public class CalcActivity extends AppCompatActivity implements View.OnClickListe
 
         // RECYCLER VIEW
 
-        // TODO: HTTP Requests; POST GET;
+        // TODO: HTTP Requests; POST GET; -> GET using Volley
 
-        // TODO: SHOW SHIFT REPORT Working - HTTP Request Response - JSON;
+        // TODO: SHOW SHIFT REPORT Working - HTTP Request Response - JSON -> Show only
 
-        // TODO: Local Storage
+        // TODO: Local Storage - SQLITE
 
         // TODO: Background Services
 

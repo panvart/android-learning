@@ -11,5 +11,7 @@
         <item>Logarithmic Equations</item>
 
     </string-array>
+    <string name="title_activity_new_stocks_fragment">NewStock</string>
+    <string name="action_settings">Settings</string>
 
 </resources>
