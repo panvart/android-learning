@@ -16,6 +16,9 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
+import com.example.myapplication.week4.Restaurant;
+import com.example.myapplication.week4.RestaurantHeader;
+import com.example.myapplication.week4.RestaurantsListAdapter;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -50,42 +53,51 @@ public class StocksActivity extends AppCompatActivity {
         tvTitle = findViewById(R.id.stocks_title);
         rvStocks = findViewById(R.id.stocks_recyclerview);
 
-        //loadDummyStocks();
-        mStocks = getStockDataset();
+        List<Object> mDataset = new ArrayList<>();
+        mDataset.add(RestaurantHeader.createHeaderForNovVeg("Non-Veg", 10));
+        mDataset.addAll(Restaurant.dummyList());
+        mDataset.add(RestaurantHeader.createHeaderForVegOnly("Veg", 12));
+        mDataset.addAll(Restaurant.dummyList());
 
-        stocksAdapter = new StocksAdapter(mStocks, StocksActivity.this);
-        rvStocks.setAdapter(stocksAdapter);
+        rvStocks.setAdapter(new RestaurantsListAdapter(mDataset, StocksActivity.this));
         rvStocks.setLayoutManager(new LinearLayoutManager(StocksActivity.this, LinearLayoutManager.VERTICAL, false));
 
-        btnRemoveStock = findViewById(R.id.stocks_btn_remove_stock);
-        btnRemoveStock.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-                if(mStocks.size()<1) {
-
-                    //btnRemoveStock.setEnabled(false);
-                    loadDataFromNetwork();
-
-                } else {
-
-                    int max = mStocks.size();
-
-                    Random random = new Random();
-                    int indexToRemove = random.nextInt(max);
-
-                    Stock stock = mStocks.remove(indexToRemove);
-//                Stock stock = mStocks.get(indexToRemove);
-//                stock.setPrice(100.0);
-                    Toast.makeText(StocksActivity.this, "Removing row " + (indexToRemove + 1) + " with stock: " + stock.toString(), Toast.LENGTH_LONG).show();
-
-                    stocksAdapter.notifyItemRemoved(indexToRemove);
-//                stocksAdapter.notifyItemChanged(indexToRemove);
-                    stocksAdapter.notifyDataSetChanged();
-                }
-
-            }
-        });
+//        //loadDummyStocks();
+//        mStocks = getStockDataset();
+//
+//        stocksAdapter = new StocksAdapter(mStocks, StocksActivity.this);
+//        rvStocks.setAdapter(stocksAdapter);
+//        rvStocks.setLayoutManager(new LinearLayoutManager(StocksActivity.this, LinearLayoutManager.VERTICAL, false));
+//
+//        btnRemoveStock = findViewById(R.id.stocks_btn_remove_stock);
+//        btnRemoveStock.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//
+//                if(mStocks.size()<1) {
+//
+//                    //btnRemoveStock.setEnabled(false);
+//                    loadDataFromNetwork();
+//
+//                } else {
+//
+//                    int max = mStocks.size();
+//
+//                    Random random = new Random();
+//                    int indexToRemove = random.nextInt(max);
+//
+//                    Stock stock = mStocks.remove(indexToRemove);
+////                Stock stock = mStocks.get(indexToRemove);
+////                stock.setPrice(100.0);
+//                    Toast.makeText(StocksActivity.this, "Removing row " + (indexToRemove + 1) + " with stock: " + stock.toString(), Toast.LENGTH_LONG).show();
+//
+//                    stocksAdapter.notifyItemRemoved(indexToRemove);
+////                stocksAdapter.notifyItemChanged(indexToRemove);
+//                    stocksAdapter.notifyDataSetChanged();
+//                }
+//
+//            }
+//        });
 
     }
 

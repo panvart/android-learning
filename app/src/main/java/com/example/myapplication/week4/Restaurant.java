@@ -15,11 +15,17 @@ public class Restaurant {
     private String name;
     private URL imgUrl;
     private String place;
+    private int rating;
+    private int ratingMax;
+    private boolean vegOnly;
 
-    public Restaurant(String id, String name, String imgUrl, String place) {
+    public Restaurant(String id, String name, String imgUrl, String place, int rating, int ratingMax) {
+
         this.id = id;
         this.name = name;
-
+        this.place = place;
+        this.rating = rating;
+        this.ratingMax = ratingMax;
         try{
             this.imgUrl = new URL(imgUrl);
         } catch (Exception e) {
@@ -27,14 +33,13 @@ public class Restaurant {
             this.imgUrl = null;
         }
 
-        this.place = place;
     }
 
     public String getId() {
         return id;
     }
 
-    public void setId(String id) {
+    private void setId(String id) {
         this.id = id;
     }
 
@@ -62,6 +67,22 @@ public class Restaurant {
         this.place = place;
     }
 
+    public int getRating() {
+        return rating;
+    }
+
+    public void setRating(int rating) {
+        this.rating = rating;
+    }
+
+    public int getRatingMax() {
+        return ratingMax;
+    }
+
+    public void setRatingMax(int ratingMax) {
+        this.ratingMax = ratingMax;
+    }
+
     @Override
     public String toString() {
         return "Restaurant{" +
@@ -69,6 +90,8 @@ public class Restaurant {
                 ", name='" + name + '\'' +
                 ", imgUrl=" + imgUrl +
                 ", place='" + place + '\'' +
+                ", rating=" + rating +
+                ", ratingMax=" + ratingMax +
                 '}';
     }
 
@@ -80,28 +103,36 @@ public class Restaurant {
                 "res_a",
                 "Tansen",
                 "https://im1.dineout.co.in/images/uploads/restaurant/sharpen/4/r/o/p4258-14640955255744532521c70.jpg?w=400",
-                "Necklace Road, Secunderabad"
+                "Necklace Road, Secunderabad",
+                4,
+                5
         ));
 
         list.add(new Restaurant(
                 "res_b",
                 "Jiva Imperia",
                 "https://im1.dineout.co.in/images/uploads/restaurant/sharpen/9/s/t/p9245-147693867158084bafc99c8.jpg?w=400",
-                "Begumpet, Secunderabad"
+                "Begumpet, Secunderabad",
+                3,
+                5
         ));
 
         list.add(new Restaurant(
                 "res_c",
                 "Headquarters",
                 "https://im1.dineout.co.in/images/uploads/restaurant/sharpen/3/y/j/p34752-15259529465af431b2160e6.jpg?w=400",
-                "Somajiguda, Central East Hyderabad"
+                "Somajiguda, Central East Hyderabad",
+                1,
+                5
         ));
 
         list.add(new Restaurant(
                 "res_d",
                 "Paradise",
                 "abc",
-                "Paradise Circle, Hyderabad"
+                "Paradise Circle, Hyderabad",
+                4,
+                5
         ));
 
         return list;

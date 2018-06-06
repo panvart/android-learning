@@ -31,9 +31,20 @@
         android:layout_below="@id/row_restaurants_tv_name"
         android:layout_alignLeft="@id/row_restaurants_tv_name"
         android:layout_alignBottom="@id/row_restaurants_iv_img"
+        android:layout_toLeftOf="@+id/row_restaurants_rb_restau_rating"
         android:layout_centerVertical="true"
         android:textAppearance="@style/TextAppearance.AppCompat.Caption"
         />
 
+    <android.support.v7.widget.AppCompatRatingBar
+        android:id="@+id/row_restaurants_rb_restau_rating"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignTop="@id/row_restaurants_tv_place"
+        android:layout_alignBottom="@id/row_restaurants_tv_place"
+        android:layout_alignParentRight="true"
+        android:numStars="1"
+        android:progressDrawable="@drawable/ic_star_border_black_24dp"
+        android:progressBackgroundTint="@color/colorAccent"/>
 
 </RelativeLayout>

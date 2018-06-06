@@ -21,8 +21,6 @@ public class RestaurantsFragment extends Fragment{
     List<Restaurant> listRestaurants;
 
 
-
-
     /**
      * The onCreateView method is called when Fragment should create its View object hierarchy,
      * either dynamically or via XML layout inflation.
@@ -47,7 +45,5 @@ public class RestaurantsFragment extends Fragment{
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
     }
-
-
 
 }
