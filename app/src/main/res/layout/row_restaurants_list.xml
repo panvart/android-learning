@@ -7,8 +7,10 @@
 
     <ImageView
         android:id="@+id/row_restaurants_iv_img"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="@dimen/dimen_img_restaurant_row"
+        android:layout_height="@dimen/dimen_img_restaurant_row"
+        android:minHeight="@dimen/dimen_img_restaurant_row"
+        android:minWidth="@dimen/dimen_img_restaurant_row"
         android:layout_alignParentLeft="true"
         android:layout_marginRight="@dimen/margin_large"
         android:src="@drawable/ic_restaurant_default" />
@@ -21,6 +23,7 @@
         android:layout_alignTop="@id/row_restaurants_iv_img"
         android:layout_toRightOf="@id/row_restaurants_iv_img"
         android:textAppearance="@style/TextAppearance.AppCompat.Large"
+        android:visibility="gone"
         />
 
     <TextView
@@ -34,6 +37,7 @@
         android:layout_toLeftOf="@+id/row_restaurants_rb_restau_rating"
         android:layout_centerVertical="true"
         android:textAppearance="@style/TextAppearance.AppCompat.Caption"
+        android:visibility="gone"
         />
 
     <android.support.v7.widget.AppCompatRatingBar
@@ -45,6 +49,8 @@
         android:layout_alignParentRight="true"
         android:numStars="1"
         android:progressDrawable="@drawable/ic_star_border_black_24dp"
-        android:progressBackgroundTint="@color/colorAccent"/>
+        android:progressBackgroundTint="@color/colorAccent"
+        android:visibility="gone"
+        />
 
 </RelativeLayout>

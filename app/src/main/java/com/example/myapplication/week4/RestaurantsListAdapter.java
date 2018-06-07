@@ -2,6 +2,7 @@ package com.example.myapplication.week4;
 
 import android.content.Context;
 import android.support.v4.content.ContextCompat;
+import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -11,6 +12,7 @@ import android.widget.RatingBar;
 import android.widget.TextView;
 
 import com.example.myapplication.R;
+import com.squareup.picasso.Picasso;
 
 import java.util.List;
 
@@ -60,15 +62,7 @@ public class RestaurantsListAdapter extends RecyclerView.Adapter<RecyclerView.Vi
 
             case VIEWTYPE_RESTAURANT_HEADER:
 
-                TextView tvName = ((RestaurantHeaderViewHolder) holder).getTvName();
-                TextView tvLabel = ((RestaurantHeaderViewHolder) holder).getTvLabel();
-                ImageView ivIcon = ((RestaurantHeaderViewHolder) holder).getIvIcon();
-
-                RestaurantHeader header = (RestaurantHeader) mDataset.get(position);
-                ivIcon.setImageDrawable(ContextCompat.getDrawable(mContext, header.getIcResId()));
-
-                tvName.setText(header.getHeading());
-                tvLabel.setText(header.getNumRestaurants()+" restaurant(s)");
+                onBind(holder ,mDataset.get(position), mContext);
 
                 break;
             case VIEWTYPE_RESTAURANT_ROW:
@@ -81,7 +75,15 @@ public class RestaurantsListAdapter extends RecyclerView.Adapter<RecyclerView.Vi
 
                 tvRName.setText(row.getName());
                 tvRPlace.setText(row.getPlace());
-                ivRIcon.setImageDrawable(ContextCompat.getDrawable(mContext, R.drawable.ic_restaurant_default));
+
+                if(row.getImgUrl()!=null)
+                    Picasso.get().
+                            load(row.getImgUrl().toString())
+                            .resizeDimen(R.dimen.dimen_img_restaurant_row, R.dimen.dimen_img_restaurant_row)
+                            .placeholder(R.drawable.ic_restaurant_default)
+                            .into(ivRIcon);
+                else
+                    ivRIcon.setImageDrawable(ContextCompat.getDrawable(mContext, R.drawable.ic_restaurant_default));
 
                 break;
             default:
@@ -109,6 +111,22 @@ public class RestaurantsListAdapter extends RecyclerView.Adapter<RecyclerView.Vi
             return VIEWTYPE_RESTAURANT_ROW;
         else
             throw new RuntimeException("Datatype not supported");
+
+    }
+
+    private void onBind(RecyclerView.ViewHolder holder, Object data, Context mContext){
+
+        RestaurantHeaderViewHolder restHeaderVH = (RestaurantHeaderViewHolder) holder;
+
+        TextView tvName = restHeaderVH.getTvName();
+        TextView tvLabel = restHeaderVH.getTvLabel();
+        ImageView ivIcon = restHeaderVH.getIvIcon();
+
+        RestaurantHeader header = (RestaurantHeader) data;
+        ivIcon.setImageDrawable(ContextCompat.getDrawable(mContext, header.getIcResId()));
+
+        tvName.setText(header.getHeading());
+        tvLabel.setText(header.getNumRestaurants()+" restaurant(s)");
 
     }
 
@@ -196,6 +214,8 @@ public class RestaurantsListAdapter extends RecyclerView.Adapter<RecyclerView.Vi
         public void setIvIcon(ImageView ivIcon) {
             this.ivIcon = ivIcon;
         }
+
+
     }
 
 }

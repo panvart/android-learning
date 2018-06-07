@@ -3,6 +3,7 @@ package com.example.myapplication;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
@@ -43,6 +44,7 @@ public class StocksActivity extends AppCompatActivity {
     Button btnRemoveStock;
 
     private List<Stock> mStocks;
+    List<Object> mDataset;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -53,14 +55,25 @@ public class StocksActivity extends AppCompatActivity {
         tvTitle = findViewById(R.id.stocks_title);
         rvStocks = findViewById(R.id.stocks_recyclerview);
 
-        List<Object> mDataset = new ArrayList<>();
+        mDataset = new ArrayList<>();
         mDataset.add(RestaurantHeader.createHeaderForNovVeg("Non-Veg", 10));
         mDataset.addAll(Restaurant.dummyList());
         mDataset.add(RestaurantHeader.createHeaderForVegOnly("Veg", 12));
         mDataset.addAll(Restaurant.dummyList());
 
         rvStocks.setAdapter(new RestaurantsListAdapter(mDataset, StocksActivity.this));
+
+        // Horizontally/Vertically aligned one item
         rvStocks.setLayoutManager(new LinearLayoutManager(StocksActivity.this, LinearLayoutManager.VERTICAL, false));
+
+//      Flexible layout
+//        GridLayoutManager gridLayout = new GridLayoutManager(StocksActivity.this,
+//                RestaurantListSpan.MAXSPAN,
+//                LinearLayoutManager.VERTICAL,
+//                false);
+//
+//        gridLayout.setSpanSizeLookup(new RestaurantListSpan());
+//        rvStocks.setLayoutManager(gridLayout);
 
 //        //loadDummyStocks();
 //        mStocks = getStockDataset();
@@ -98,6 +111,29 @@ public class StocksActivity extends AppCompatActivity {
 //
 //            }
 //        });
+
+    }
+
+    /**
+     * Class used to set column spans of items in recyclerview
+     */
+    public class RestaurantListSpan extends GridLayoutManager.SpanSizeLookup {
+
+        public static final int MAXSPAN = 2;
+
+        public RestaurantListSpan() {
+            super();
+        }
+
+        @Override
+        public int getSpanSize(int position) {
+
+            Object object = mDataset.get(position);
+            if(object instanceof RestaurantHeader)
+                return MAXSPAN;
+
+            return MAXSPAN/2;
+        }
 
     }
 

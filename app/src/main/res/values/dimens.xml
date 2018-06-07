@@ -3,4 +3,5 @@
     <dimen name="margin">16dp</dimen>
     <dimen name="margin_large">16dp</dimen>
     <dimen name="margin_medium">8dp</dimen>
+    <dimen name="dimen_img_restaurant_row">48dp</dimen>
 </resources>
