@@ -19,7 +19,7 @@ public class Restaurant {
     private int ratingMax;
     private boolean vegOnly;
 
-    public Restaurant(String id, String name, String imgUrl, String place, int rating, int ratingMax) {
+    public Restaurant(String id, String name, String imgUrl, String place, int rating, int ratingMax, boolean vegOnly) {
 
         this.id = id;
         this.name = name;
@@ -105,7 +105,8 @@ public class Restaurant {
                 "https://im1.dineout.co.in/images/uploads/restaurant/sharpen/4/r/o/p4258-14640955255744532521c70.jpg?w=400",
                 "Necklace Road, Secunderabad",
                 4,
-                5
+                5,
+                false
         ));
 
         list.add(new Restaurant(
@@ -114,7 +115,8 @@ public class Restaurant {
                 "https://im1.dineout.co.in/images/uploads/restaurant/sharpen/9/s/t/p9245-147693867158084bafc99c8.jpg?w=400",
                 "Begumpet, Secunderabad",
                 3,
-                5
+                5,
+                true
         ));
 
         list.add(new Restaurant(
@@ -123,7 +125,8 @@ public class Restaurant {
                 "https://im1.dineout.co.in/images/uploads/restaurant/sharpen/3/y/j/p34752-15259529465af431b2160e6.jpg?w=400",
                 "Somajiguda, Central East Hyderabad",
                 1,
-                5
+                5,
+                false
         ));
 
         list.add(new Restaurant(
@@ -132,7 +135,8 @@ public class Restaurant {
                 "abc",
                 "Paradise Circle, Hyderabad",
                 4,
-                5
+                5,
+                true
         ));
 
         return list;

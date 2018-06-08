@@ -20,6 +20,7 @@ import com.android.volley.toolbox.Volley;
 import com.example.myapplication.week4.Restaurant;
 import com.example.myapplication.week4.RestaurantHeader;
 import com.example.myapplication.week4.RestaurantsListAdapter;
+import com.example.myapplication.week4.localdb.DBHelper;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -29,6 +30,7 @@ import java.util.Random;
 import static android.support.v7.widget.RecyclerView.HORIZONTAL;
 import static com.android.volley.Request.Method.GET;
 import static com.example.myapplication.StocksUtils.getStockDataset;
+import static com.example.myapplication.week4.localdb.DBHelper.CREATE_TABLE_RESTAURANTS_V10;
 
 /**
  * Created by Pankaj on 24/05/18.
@@ -54,6 +56,14 @@ public class StocksActivity extends AppCompatActivity {
 
         tvTitle = findViewById(R.id.stocks_title);
         rvStocks = findViewById(R.id.stocks_recyclerview);
+
+        Log.d(TAG, "SQL: "+CREATE_TABLE_RESTAURANTS_V10);
+
+        DBHelper dbHelper = DBHelper.getInstance(StocksActivity.this);
+
+        // Async Tasl
+        dbHelper.insertRestaurants(Restaurant.dummyList());
+
 
         mDataset = new ArrayList<>();
         mDataset.add(RestaurantHeader.createHeaderForNovVeg("Non-Veg", 10));
