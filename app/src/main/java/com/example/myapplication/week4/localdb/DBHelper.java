@@ -24,7 +24,7 @@ public final class DBHelper extends SQLiteOpenHelper {
     private static DBHelper dbHelper;
     private static final String TAG = "DBHelper";
 
-    private static final int DATABASE_VERSION = 10;
+    private static final int DATABASE_VERSION = 12;
     private static final String DATABASE_NAME = "restaurants_db";
 
     private static final String TABLE_RESTAURANTS = "restaurants";
@@ -163,10 +163,72 @@ public final class DBHelper extends SQLiteOpenHelper {
      */
     public boolean insertRestaurants(List<Restaurant> restaurantList) {
 
+        boolean isSuccess = false;
+
+        if(restaurantList==null
+                || restaurantList.size()<1) {
+            Log.d(TAG, "Invalid restaurants list to insert.");
+            return isSuccess;
+        }
+
+        SQLiteDatabase db = getWritableDatabase();
+
+        try {
+
+            db.beginTransaction();
+
+            Log.d(TAG, String.format("To insert %d restaurants in table", restaurantList.size()));
+
+            for (Restaurant restaurant : restaurantList) {
+
+                Log.d(TAG, "INSERT: "+restaurant.toString());
+
+                ContentValues values = new ContentValues();
+                values.put(COLUMN_ID, restaurant.getId());
+                values.put(COLUMN_NAME, restaurant.getName());
+                values.put(COLUMN_URL_IMG, restaurant.getImgUrl()!=null?restaurant.getImgUrl().toString():null);
+                values.put(COLUMN_PLACE, restaurant.getPlace());
+                values.put(COLUMN_RATING, restaurant.getRating());
+                values.put(COLUMN_RATING_MAX, restaurant.getRatingMax());
+                values.put(COLUMN_VEGONLY, 0);
+
+                int numRows = db.update(TABLE_RESTAURANTS, values, COLUMN_ID+" = ?", new String[]{restaurant.getId()});
+
+                if(numRows<1) {
+
+                    // There is no restaurant record with given id to update. So insert it.
+                    long rowIdInserted = db.insertOrThrow(TABLE_RESTAURANTS, null, values);
+                    if(rowIdInserted==-1) {
+                        Log.d(TAG, "Restaurant insertion failed in db - "+restaurant.toString());
+                        isSuccess = false;
+                        break;
+                    } else {
+                        Log.d(TAG, "Restaurant inserted in db - " + restaurant.toString());
+                        isSuccess = true;
+                    }
 
 
+                } else {
 
-        return false;
+                    Log.d(TAG, "Restaurant updated in db - "+restaurant.toString());
+                    isSuccess = true;
+
+
+                }
+
+            }
+
+            if(isSuccess)
+                db.setTransactionSuccessful();
+
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            db.endTransaction();
+        }
+
+        return isSuccess;
     }
 
     /**
@@ -227,7 +289,6 @@ public final class DBHelper extends SQLiteOpenHelper {
 
     }
 
-
     /**
      * Return all restaurants in db
      * @return
@@ -242,7 +303,7 @@ public final class DBHelper extends SQLiteOpenHelper {
         try {
 
 
-             cursor = db.query(
+            cursor = db.query(
                     TABLE_RESTAURANTS,
                     null,
                     null,
@@ -254,7 +315,7 @@ public final class DBHelper extends SQLiteOpenHelper {
 
             while (cursor.moveToNext()) {
 
-                listRestaurants.add(new Restaurant(
+                Restaurant curr = new Restaurant(
                         cursor.getString(cursor.getColumnIndex(COLUMN_ID)),
                         cursor.getString(cursor.getColumnIndex(COLUMN_NAME)),
                         cursor.getString(cursor.getColumnIndex(COLUMN_URL_IMG)),
@@ -262,7 +323,10 @@ public final class DBHelper extends SQLiteOpenHelper {
                         cursor.getInt(cursor.getColumnIndex(COLUMN_RATING)),
                         cursor.getInt(cursor.getColumnIndex(COLUMN_RATING_MAX)),
                         cursor.getShort(cursor.getColumnIndex(COLUMN_VEGONLY))==1
-                ));
+                );
+
+                Log.d(TAG, "GET: "+curr.toString());
+                listRestaurants.add(curr);
 
             }
 

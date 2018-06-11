@@ -4,6 +4,7 @@ import android.content.Context;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -24,6 +25,8 @@ public class RestaurantsListAdapter extends RecyclerView.Adapter<RecyclerView.Vi
 
     private static final int VIEWTYPE_RESTAURANT_HEADER = 100;
     private static final int VIEWTYPE_RESTAURANT_ROW = 300;
+
+    private static final String TAG = "RestAdapter";
 
     private List<Object> mDataset;
     private Context mContext;
@@ -72,6 +75,7 @@ public class RestaurantsListAdapter extends RecyclerView.Adapter<RecyclerView.Vi
                 ImageView ivRIcon = ((RestaurantRowViewHolder) holder).getIvIcon();
 
                 Restaurant row = (Restaurant) mDataset.get(position);
+                Log.d(TAG, "ONBIND: "+row.toString());
 
                 tvRName.setText(row.getName());
                 tvRPlace.setText(row.getPlace());
@@ -123,6 +127,8 @@ public class RestaurantsListAdapter extends RecyclerView.Adapter<RecyclerView.Vi
         ImageView ivIcon = restHeaderVH.getIvIcon();
 
         RestaurantHeader header = (RestaurantHeader) data;
+        Log.d(TAG, "ONBIND: "+header.toString());
+
         ivIcon.setImageDrawable(ContextCompat.getDrawable(mContext, header.getIcResId()));
 
         tvName.setText(header.getHeading());

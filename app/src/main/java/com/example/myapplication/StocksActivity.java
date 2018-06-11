@@ -1,6 +1,7 @@
 package com.example.myapplication;
 
 import android.os.Bundle;
+import android.support.annotation.LongDef;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.GridLayoutManager;
@@ -21,6 +22,7 @@ import com.example.myapplication.week4.Restaurant;
 import com.example.myapplication.week4.RestaurantHeader;
 import com.example.myapplication.week4.RestaurantsListAdapter;
 import com.example.myapplication.week4.localdb.DBHelper;
+import com.example.myapplication.week4.localdb.RestaurantsDbAsyncTask;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -59,23 +61,8 @@ public class StocksActivity extends AppCompatActivity {
 
         Log.d(TAG, "SQL: "+CREATE_TABLE_RESTAURANTS_V10);
 
-        DBHelper dbHelper = DBHelper.getInstance(StocksActivity.this);
-
-        // Async Tasl
-        dbHelper.insertRestaurants(Restaurant.dummyList());
-
-
-        mDataset = new ArrayList<>();
-        mDataset.add(RestaurantHeader.createHeaderForNovVeg("Non-Veg", 10));
-        mDataset.addAll(Restaurant.dummyList());
-        mDataset.add(RestaurantHeader.createHeaderForVegOnly("Veg", 12));
-        mDataset.addAll(Restaurant.dummyList());
-
-        rvStocks.setAdapter(new RestaurantsListAdapter(mDataset, StocksActivity.this));
-
-        // Horizontally/Vertically aligned one item
-        rvStocks.setLayoutManager(new LinearLayoutManager(StocksActivity.this, LinearLayoutManager.VERTICAL, false));
-
+        //demoDatabase();
+        demoDatabase_Async();
 //      Flexible layout
 //        GridLayoutManager gridLayout = new GridLayoutManager(StocksActivity.this,
 //                RestaurantListSpan.MAXSPAN,
@@ -208,6 +195,66 @@ public class StocksActivity extends AppCompatActivity {
             mStocks.add(curr);
 
         }
+
+    }
+
+    /**
+     * DB methods for demo
+     */
+    public void demoDatabase(){
+
+        DBHelper dbHelper = DBHelper.getInstance(StocksActivity.this);
+
+        dbHelper.insertRestaurants(Restaurant.dummyList());
+
+        // Async Task
+        mDataset = new ArrayList<>();
+        mDataset.add(RestaurantHeader.createHeaderForNovVeg("Non-Veg", 10));
+        mDataset.addAll(dbHelper.getAllRestaurants());
+        mDataset.add(RestaurantHeader.createHeaderForVegOnly("Veg", 12));
+        mDataset.addAll(dbHelper.getAllRestaurants());
+
+        rvStocks.setAdapter(new RestaurantsListAdapter(mDataset, StocksActivity.this));
+
+        // Horizontally/Vertically aligned one item
+        rvStocks.setLayoutManager(new LinearLayoutManager(StocksActivity.this, LinearLayoutManager.VERTICAL, false));
+
+    }
+
+    /**
+     * DB methods for demo
+     */
+    public void demoDatabase_Async(){
+
+        RestaurantsDbAsyncTask restaurantsDbAsyncTask = RestaurantsDbAsyncTask.createInstanceGetAllRestaurants(
+                StocksActivity.this,
+                new RestaurantsDbAsyncTask.DBOperationListener_GetAll() {
+
+                    @Override
+                    public void onListOfRestaurantsRetrieved(List<Restaurant> restaurantList) {
+                        mDataset = new ArrayList<>();
+                        mDataset.add(RestaurantHeader.createHeaderForNovVeg("Non-Veg", 10));
+                        mDataset.addAll(restaurantList);
+                        rvStocks.setAdapter(new RestaurantsListAdapter(mDataset, StocksActivity.this));
+
+                        // Horizontally/Vertically aligned one item
+                        rvStocks.setLayoutManager(new LinearLayoutManager(StocksActivity.this, LinearLayoutManager.VERTICAL, false));
+
+                    }
+
+                    @Override
+                    public void onProgressUpdate(Integer progress, Integer progressMax) {
+
+                        Log.d(TAG, "On Progress Update - GET ALL - "+progress);
+
+                    }
+                }
+        );
+
+        restaurantsDbAsyncTask.execute();
+
+
+
 
     }
 
