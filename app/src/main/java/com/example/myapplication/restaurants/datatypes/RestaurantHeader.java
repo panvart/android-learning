@@ -1,9 +1,6 @@
-package com.example.myapplication.week4;
+package com.example.myapplication.restaurants.datatypes;
 
 import com.example.myapplication.R;
-
-import java.net.URL;
-import java.util.ArrayList;
 
 /**
  * Created by Pankaj on 01/06/18.

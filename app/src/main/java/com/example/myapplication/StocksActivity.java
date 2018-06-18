@@ -1,38 +1,31 @@
 package com.example.myapplication;
 
 import android.os.Bundle;
-import android.support.annotation.LongDef;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
-import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
-import com.example.myapplication.week4.Restaurant;
-import com.example.myapplication.week4.RestaurantHeader;
-import com.example.myapplication.week4.RestaurantsListAdapter;
-import com.example.myapplication.week4.localdb.DBHelper;
-import com.example.myapplication.week4.localdb.RestaurantsDbAsyncTask;
+import com.example.myapplication.restaurants.datatypes.Restaurant;
+import com.example.myapplication.restaurants.datatypes.RestaurantHeader;
+import com.example.myapplication.restaurants.adapters.RestaurantsListAdapter;
+import com.example.myapplication.restaurants.localdb.DBHelper;
+import com.example.myapplication.restaurants.localdb.RestaurantsDbAsyncTask;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
-import java.util.Random;
 
-import static android.support.v7.widget.RecyclerView.HORIZONTAL;
 import static com.android.volley.Request.Method.GET;
-import static com.example.myapplication.StocksUtils.getStockDataset;
-import static com.example.myapplication.week4.localdb.DBHelper.CREATE_TABLE_RESTAURANTS_V10;
+import static com.example.myapplication.restaurants.localdb.DBHelper.CREATE_TABLE_RESTAURANTS_V10;
 
 /**
  * Created by Pankaj on 24/05/18.

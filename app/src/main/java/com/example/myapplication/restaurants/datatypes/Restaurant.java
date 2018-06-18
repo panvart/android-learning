@@ -1,6 +1,6 @@
-package com.example.myapplication.week4;
+package com.example.myapplication.restaurants.datatypes;
 
-import android.widget.ArrayAdapter;
+import com.google.gson.annotations.SerializedName;
 
 import java.net.URL;
 import java.util.ArrayList;
@@ -13,11 +13,14 @@ public class Restaurant {
 
     private String id;
     private String name;
-    private URL imgUrl;
+    private String imgUrl;
     private String place;
     private int rating;
     private int ratingMax;
     private boolean vegOnly;
+
+    public Restaurant() {
+    }
 
     public Restaurant(String id, String name, String imgUrl, String place, int rating, int ratingMax, boolean vegOnly) {
 
@@ -26,12 +29,8 @@ public class Restaurant {
         this.place = place;
         this.rating = rating;
         this.ratingMax = ratingMax;
-        try{
-            this.imgUrl = new URL(imgUrl);
-        } catch (Exception e) {
-            e.printStackTrace();
-            this.imgUrl = null;
-        }
+        this.imgUrl = imgUrl;
+        this.vegOnly = vegOnly;
 
     }
 
@@ -52,10 +51,17 @@ public class Restaurant {
     }
 
     public URL getImgUrl() {
-        return imgUrl;
+
+        try{
+            return new URL(imgUrl);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        return null;
     }
 
-    public void setImgUrl(URL imgUrl) {
+    public void setImgUrl(String imgUrl) {
         this.imgUrl = imgUrl;
     }
 

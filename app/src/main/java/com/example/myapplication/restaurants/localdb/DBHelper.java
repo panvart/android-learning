@@ -1,4 +1,4 @@
-package com.example.myapplication.week4.localdb;
+package com.example.myapplication.restaurants.localdb;
 
 import android.content.ContentValues;
 import android.content.Context;
@@ -7,7 +7,7 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.util.Log;
 
-import com.example.myapplication.week4.Restaurant;
+import com.example.myapplication.restaurants.datatypes.Restaurant;
 
 import java.util.ArrayList;
 import java.util.List;

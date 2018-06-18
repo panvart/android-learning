@@ -1,8 +1,7 @@
-package com.example.myapplication.week4;
+package com.example.myapplication.restaurants.adapters;
 
 import android.content.Context;
 import android.support.v4.content.ContextCompat;
-import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -13,6 +12,8 @@ import android.widget.RatingBar;
 import android.widget.TextView;
 
 import com.example.myapplication.R;
+import com.example.myapplication.restaurants.datatypes.Restaurant;
+import com.example.myapplication.restaurants.datatypes.RestaurantHeader;
 import com.squareup.picasso.Picasso;
 
 import java.util.List;

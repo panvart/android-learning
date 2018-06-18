@@ -1,9 +1,9 @@
-package com.example.myapplication.week4.localdb;
+package com.example.myapplication.restaurants.localdb;
 
 import android.content.Context;
 import android.os.AsyncTask;
 
-import com.example.myapplication.week4.Restaurant;
+import com.example.myapplication.restaurants.datatypes.Restaurant;
 
 import java.util.List;
 
