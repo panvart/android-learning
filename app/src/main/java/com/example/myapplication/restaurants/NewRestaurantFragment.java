@@ -12,14 +12,18 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
+import android.widget.LinearLayout;
+import android.widget.ProgressBar;
 import android.widget.RatingBar;
 import android.widget.Toast;
 import android.widget.ToggleButton;
 
 import com.android.volley.AuthFailureError;
+import com.android.volley.NetworkResponse;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
+import com.android.volley.toolbox.JsonRequest;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.example.myapplication.R;
@@ -43,6 +47,8 @@ public class NewRestaurantFragment extends Fragment {
     private EditText etUrl;
     private RatingBar rbRating;
     private ToggleButton tbVegOnly;
+    private LinearLayout llProgressBarContainer;
+    private ProgressBar pbProgress;
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -67,6 +73,9 @@ public class NewRestaurantFragment extends Fragment {
         etUrl = view.findViewById(R.id.frag_newrestaurant_et_link);
         rbRating = view.findViewById(R.id.frag_newrestaurant_rb_rating);
         tbVegOnly = view.findViewById(R.id.frag_newrestaurant_tb_veg_nonveg);
+
+        pbProgress = view.findViewById(R.id.frag_newrestaurant_pb_progressbar);
+        llProgressBarContainer = view.findViewById(R.id.frag_newrestaurant_ll_progressbar);
 
         netRequests = Volley.newRequestQueue(getContext());
 
@@ -102,8 +111,7 @@ public class NewRestaurantFragment extends Fragment {
      *
      * @return true if new restaurant created
      */
-    private boolean createRestaurant(){
-
+    private void createRestaurant(){
 
         String name = etName.getText().toString();
         String place = etPlace.getText().toString();
@@ -114,46 +122,81 @@ public class NewRestaurantFragment extends Fragment {
                 || place.trim().length()<1
                 || url.trim().length()<1
                 || rating<1
-                || rating>5)
-            return false;
+                || rating>5) {
+            Toast.makeText(getContext(), "Trying to insert invalid restaurant. Please check!", Toast.LENGTH_SHORT).show();
+            return;
+        }
 
-        Restaurant curr = new Restaurant(null, name, place, url, rating, getResources().getInteger(R.integer.rating_max), tbVegOnly.isPressed());
-        Gson gson = new Gson();
+        Restaurant curr = new Restaurant(null, name, url, place, rating, getResources().getInteger(R.integer.rating_max), tbVegOnly.isPressed());
+        final Gson gson = new Gson();
         final String body = gson.toJson(curr);
+
+        Log.d(TAG, "POST BODY: "+body);
 
         String URL = URLs.POST_ONE;
 
-        StringRequest postRestaurant = new StringRequest(POST, URL,
-                new Response.Listener<String>() {
-                    @Override
-                    public void onResponse(String response) {
+        try {
+            StringRequest postRestaurant = new StringRequest(POST, URL,
+                    new Response.Listener<String>() {
+                        @Override
+                        public void onResponse(String response) {
 
-                        Log.d(TAG, "Restaurant Added - "+response);
+                            hideProgressBar();
+                            Log.d(TAG, "Restaurant Added - " + response);
+                            Restaurant newRestaurant = gson.fromJson(response, Restaurant.class);
+                            Toast.makeText(getContext(), "Restaurant Added - " + newRestaurant.getId(), Toast.LENGTH_SHORT).show();
 
-                    }
-                },
-                new Response.ErrorListener() {
-                    @Override
-                    public void onErrorResponse(VolleyError error) {
-                        Log.d(TAG, "Restaurant Add - Error");
-                    }
-                }) {
+                        }
+                    },
+                    new Response.ErrorListener() {
+                        @Override
+                        public void onErrorResponse(VolleyError error) {
 
-            @Override
-            public String getBodyContentType() {
-                return "application/json";
-            }
+                            hideProgressBar();
+                            Log.d(TAG, "Restaurant Add - Error");
+                            Toast.makeText(getContext(), "Restaurant Added - ERROR - " + error.getMessage(), Toast.LENGTH_SHORT).show();
 
-            @Override
-            public byte[] getBody() throws AuthFailureError {
+                        }
+                    }) {
 
-                return body.getBytes();
+                @Override
+                public String getBodyContentType() {
+                    return "application/json";
+                }
 
-            }
-        };
+                @Override
+                public byte[] getBody() throws AuthFailureError {
 
-        netRequests.add(postRestaurant);
-        return true;
+                    return body.getBytes();
+
+                }
+
+            };
+
+            netRequests.add(postRestaurant);
+            showProgressBar();
+        } catch (Exception e) {
+            e.printStackTrace();
+            hideProgressBar();
+        }
+
+    }
+
+    /**
+     * Show progress bar
+     */
+    private void showProgressBar(){
+
+        llProgressBarContainer.setVisibility(View.VISIBLE);
+
+    }
+
+    /**
+     * Hide progress bar
+     */
+    private void hideProgressBar(){
+
+        llProgressBarContainer.setVisibility(View.GONE);
 
     }
 

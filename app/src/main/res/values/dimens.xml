@@ -4,6 +4,7 @@
     <dimen name="margin_large">16dp</dimen>
     <dimen name="margin_medium">8dp</dimen>
     <dimen name="dimen_img_restaurant_row">48dp</dimen>
+    <dimen name="dimen_progress_bar">60dp</dimen>
 
     <integer name="rating_max">5</integer>
     <fraction name="rating_step_size">0.5</fraction>

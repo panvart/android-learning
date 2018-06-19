@@ -28,7 +28,6 @@
             android:textAppearance="@style/TextAppearance.AppCompat.Large"
             />
 
-
     </RelativeLayout>
 
     <android.support.v7.widget.RecyclerView

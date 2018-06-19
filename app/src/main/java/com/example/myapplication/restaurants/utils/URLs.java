@@ -11,4 +11,5 @@ public class URLs {
     public static final String GET_ALL = BASE_URL+"/restaurants";
     public static final String POST_ONE = BASE_URL+"/restaurants";
 
+
 }
