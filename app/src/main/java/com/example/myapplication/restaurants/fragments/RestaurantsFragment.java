@@ -1,4 +1,4 @@
-package com.example.myapplication.restaurants;
+package com.example.myapplication.restaurants.fragments;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -9,6 +9,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.LinearLayout;
 
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
@@ -45,10 +46,13 @@ public class RestaurantsFragment extends Fragment{
     private RestaurantsListAdapter mAdapter;
     private RecyclerView rvRestaurantsList;
     private List<Object> mRestaurantsDataset;
+    private LinearLayout llProgressBarContainer;
 
     private static final String TAG = "RestFrag";
 
     public RestaurantsFragment() {
+
+
     }
 
     /**
@@ -78,8 +82,20 @@ public class RestaurantsFragment extends Fragment{
         super.onViewCreated(view, savedInstanceState);
         rvRestaurantsList = view.findViewById(R.id.frag_restaurants_rv_list);
         netRequests = Volley.newRequestQueue(getContext());
-        makeHttpGetRequestForRestaurants();
+        llProgressBarContainer = view.findViewById(R.id.frag_newrestaurant_ll_progressbar);
         Log.d(TAG, "END of onViewCreated");
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        makeHttpGetRequestForRestaurants();
+        Log.d(TAG, "onResume");
+    }
+
+    @Override
+    public void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
     }
 
     /**
@@ -99,6 +115,7 @@ public class RestaurantsFragment extends Fragment{
                     @Override
                     public void onResponse(String response) {
 
+                        hideProgressBar();
                         if(response==null) {
                             Log.d(TAG, "REST - GET ALL - RESPONSE: NULL");
                             return;
@@ -132,8 +149,9 @@ public class RestaurantsFragment extends Fragment{
 
                             if(mAdapter==null) {
                                 mAdapter = new RestaurantsListAdapter(mRestaurantsDataset, getContext());
-                                rvRestaurantsList.setAdapter(mAdapter);
                                 rvRestaurantsList.setLayoutManager(new LinearLayoutManager(getContext(), LinearLayoutManager.VERTICAL, false));
+                                rvRestaurantsList.setAdapter(mAdapter);
+
                             }
                             else {
                                 mAdapter.notifyDataSetChanged();
@@ -146,6 +164,7 @@ public class RestaurantsFragment extends Fragment{
                     @Override
                     public void onErrorResponse(VolleyError error) {
 
+                        hideProgressBar();
                         Log.d(TAG, "ERROR: "+error.getMessage());
 
                     }
@@ -154,6 +173,27 @@ public class RestaurantsFragment extends Fragment{
 
         strRequest.setTag(TAG_RESTAURANTS_GET_ALL);
         netRequests.add(strRequest);
+        showProgressBar();
+
+    }
+
+
+
+    /**
+     * Show progress bar
+     */
+    private void showProgressBar(){
+
+        llProgressBarContainer.setVisibility(View.VISIBLE);
+
+    }
+
+    /**
+     * Hide progress bar
+     */
+    private void hideProgressBar(){
+
+        llProgressBarContainer.setVisibility(View.GONE);
 
     }
 

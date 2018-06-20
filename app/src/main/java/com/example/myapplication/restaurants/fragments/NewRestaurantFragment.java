@@ -1,4 +1,4 @@
-package com.example.myapplication.restaurants;
+package com.example.myapplication.restaurants.fragments;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
