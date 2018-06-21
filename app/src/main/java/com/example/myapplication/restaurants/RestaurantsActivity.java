@@ -3,8 +3,10 @@ package com.example.myapplication.restaurants;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.design.widget.TabLayout;
+import android.support.v4.app.FragmentManager;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 
 import com.example.myapplication.R;
 import com.example.myapplication.restaurants.adapters.RestaurantTabsPagerAdapter;
@@ -17,6 +19,7 @@ public class RestaurantsActivity extends AppCompatActivity {
 
     private ViewPager mViewPager;
     private TabLayout mTabLayout;
+    private static final String TAG = "RestActivity";
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -26,6 +29,26 @@ public class RestaurantsActivity extends AppCompatActivity {
 
         mViewPager = findViewById(R.id.activity_restaurants_vp_viewpager);
         mTabLayout = findViewById(R.id.activity_restaurants_tl_tabs);
+
+        mViewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
+            @Override
+            public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
+
+            }
+
+            @Override
+            public void onPageSelected(int position) {
+
+                FragmentManager fm = getSupportFragmentManager();
+                Log.d(TAG, "FRAGMENT STACK: "+fm.getFragments().toString());
+
+            }
+
+            @Override
+            public void onPageScrollStateChanged(int state) {
+
+            }
+        });
 
         mViewPager.setAdapter(new RestaurantTabsPagerAdapter(getSupportFragmentManager(), this));
         mTabLayout.setupWithViewPager(mViewPager);

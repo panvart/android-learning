@@ -52,7 +52,6 @@ public class RestaurantsFragment extends Fragment{
 
     public RestaurantsFragment() {
 
-
     }
 
     /**
@@ -80,9 +79,26 @@ public class RestaurantsFragment extends Fragment{
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        rvRestaurantsList = view.findViewById(R.id.frag_restaurants_rv_list);
+
+        try {
+            rvRestaurantsList = view.findViewById(R.id.frag_restaurants_rv_list);
+        } catch (Exception e) {
+            Log.d(TAG, "RV Exception");
+            e.printStackTrace();
+        }
+
         netRequests = Volley.newRequestQueue(getContext());
         llProgressBarContainer = view.findViewById(R.id.frag_newrestaurant_ll_progressbar);
+
+        if(mRestaurantsDataset==null)
+            mRestaurantsDataset = new ArrayList<>();
+
+        if(mAdapter==null)
+            mAdapter = new RestaurantsListAdapter(mRestaurantsDataset, getContext());
+
+        rvRestaurantsList.setLayoutManager(new LinearLayoutManager(getContext(), LinearLayoutManager.VERTICAL, false));
+        rvRestaurantsList.setAdapter(mAdapter);
+
         Log.d(TAG, "END of onViewCreated");
     }
 
@@ -140,21 +156,12 @@ public class RestaurantsFragment extends Fragment{
 
                             Log.d(TAG, "Restaurant 0B - "+restaurantsList.get(0)+" instance of "+restaurantsList.get(0).getClass());
 
-                            if(mRestaurantsDataset==null)
-                                mRestaurantsDataset = new ArrayList<>();
-                            else
+                            if(restaurantsList!=null) {
+
                                 mRestaurantsDataset.clear();
-
-                            mRestaurantsDataset.addAll(restaurantsList);
-
-                            if(mAdapter==null) {
-                                mAdapter = new RestaurantsListAdapter(mRestaurantsDataset, getContext());
-                                rvRestaurantsList.setLayoutManager(new LinearLayoutManager(getContext(), LinearLayoutManager.VERTICAL, false));
-                                rvRestaurantsList.setAdapter(mAdapter);
-
-                            }
-                            else {
+                                mRestaurantsDataset.addAll(restaurantsList);
                                 mAdapter.notifyDataSetChanged();
+
                             }
 
                         }
@@ -177,8 +184,6 @@ public class RestaurantsFragment extends Fragment{
 
     }
 
-
-
     /**
      * Show progress bar
      */
@@ -197,4 +202,9 @@ public class RestaurantsFragment extends Fragment{
 
     }
 
+    @Override
+    public void onDestroyView() {
+        netRequests.cancelAll(TAG_RESTAURANTS_GET_ALL);
+        super.onDestroyView();
+    }
 }

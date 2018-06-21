@@ -6,10 +6,11 @@ package com.example.myapplication.restaurants.utils;
 
 public class URLs {
 
-    private static final String BASE_URL = "http://192.168.10.145:8080/api/v1";
+    public static final String BASE_URL = "http://192.168.10.28:8080/api/v1";
 
     public static final String GET_ALL = BASE_URL+"/restaurants";
     public static final String POST_ONE = BASE_URL+"/restaurants";
+    public static final String PUT_ONE = BASE_URL+"/restaurants/{id}";
 
 
 }
