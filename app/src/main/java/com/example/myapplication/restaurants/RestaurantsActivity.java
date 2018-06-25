@@ -10,12 +10,14 @@ import android.util.Log;
 
 import com.example.myapplication.R;
 import com.example.myapplication.restaurants.adapters.RestaurantTabsPagerAdapter;
+import com.example.myapplication.restaurants.datatypes.Restaurant;
+import com.example.myapplication.restaurants.fragments.UpdateRestaurantFragment;
 
 /**
  * Created by Pankaj on 13/06/18.
  */
 
-public class RestaurantsActivity extends AppCompatActivity {
+public class RestaurantsActivity extends AppCompatActivity implements UpdateRestaurantFragment.OnRestaurantUpdatedListener{
 
     private ViewPager mViewPager;
     private TabLayout mTabLayout;
@@ -53,6 +55,11 @@ public class RestaurantsActivity extends AppCompatActivity {
         mViewPager.setAdapter(new RestaurantTabsPagerAdapter(getSupportFragmentManager(), this));
         mTabLayout.setupWithViewPager(mViewPager);
 
+    }
+
+    @Override
+    public void onRestaurantUpdated(Restaurant old, Restaurant updated) {
+        Log.d(TAG, "Restaurant updated activity handled");
     }
 
 

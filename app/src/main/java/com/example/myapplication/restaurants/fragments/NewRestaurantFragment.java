@@ -3,7 +3,6 @@ package com.example.myapplication.restaurants.fragments;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
-import android.support.v4.content.ContextCompat;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -19,11 +18,9 @@ import android.widget.Toast;
 import android.widget.ToggleButton;
 
 import com.android.volley.AuthFailureError;
-import com.android.volley.NetworkResponse;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
-import com.android.volley.toolbox.JsonRequest;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.example.myapplication.R;
@@ -68,14 +65,14 @@ public class NewRestaurantFragment extends Fragment {
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        etName = view.findViewById(R.id.frag_newrestaurant_et_name);
-        etPlace = view.findViewById(R.id.frag_newrestaurant_et_place);
-        etUrl = view.findViewById(R.id.frag_newrestaurant_et_link);
-        rbRating = view.findViewById(R.id.frag_newrestaurant_rb_rating);
-        tbVegOnly = view.findViewById(R.id.frag_newrestaurant_tb_veg_nonveg);
+        etName = view.findViewById(R.id.frag_updaterestaurant_et_name);
+        etPlace = view.findViewById(R.id.frag_updaterestaurant_et_place);
+        etUrl = view.findViewById(R.id.frag_updaterestaurant_et_link);
+        rbRating = view.findViewById(R.id.frag_updaterestaurant_rb_rating);
+        tbVegOnly = view.findViewById(R.id.frag_updaterestaurant_tb_veg_nonveg);
 
-        pbProgress = view.findViewById(R.id.frag_newrestaurant_pb_progressbar);
-        llProgressBarContainer = view.findViewById(R.id.frag_newrestaurant_ll_progressbar);
+        pbProgress = view.findViewById(R.id.frag_pb_progressbar);
+        llProgressBarContainer = view.findViewById(R.id.frag_ll_progressbar);
 
         netRequests = Volley.newRequestQueue(getContext());
 

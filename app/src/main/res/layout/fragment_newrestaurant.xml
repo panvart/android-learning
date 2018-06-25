@@ -9,7 +9,7 @@
     <include layout="@layout/progress_bar"/>
 
     <EditText
-        android:id="@+id/frag_newrestaurant_et_name"
+        android:id="@+id/frag_updaterestaurant_et_name"
         android:layout_width="300dp"
         android:layout_height="41dp"
         android:layout_marginEnd="8dp"
@@ -21,10 +21,10 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.494"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/frag_newrestaurant_et_link" />
+        app:layout_constraintTop_toBottomOf="@+id/frag_updaterestaurant_et_link" />
 
     <EditText
-        android:id="@+id/frag_newrestaurant_et_place"
+        android:id="@+id/frag_updaterestaurant_et_place"
         android:layout_width="300dp"
         android:layout_height="41dp"
         android:layout_marginEnd="8dp"
@@ -36,10 +36,10 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.494"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/frag_newrestaurant_et_name" />
+        app:layout_constraintTop_toBottomOf="@+id/frag_updaterestaurant_et_name" />
 
     <EditText
-        android:id="@+id/frag_newrestaurant_et_link"
+        android:id="@+id/frag_updaterestaurant_et_link"
         android:layout_width="300dp"
         android:layout_height="wrap_content"
         android:layout_marginEnd="8dp"
@@ -54,7 +54,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <RatingBar
-        android:id="@+id/frag_newrestaurant_rb_rating"
+        android:id="@+id/frag_updaterestaurant_rb_rating"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="8dp"
@@ -66,10 +66,10 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.494"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/frag_newrestaurant_tv_rating_label"/>
+        app:layout_constraintTop_toBottomOf="@+id/frag_updaterestaurant_tv_rating_label"/>
 
     <TextView
-        android:id="@+id/frag_newrestaurant_tv_rating_label"
+        android:id="@+id/frag_updaterestaurant_tv_rating_label"
         android:layout_width="302dp"
         android:layout_height="54dp"
         android:layout_marginEnd="8dp"
@@ -79,10 +79,10 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.494"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/frag_newrestaurant_tb_veg_nonveg" />
+        app:layout_constraintTop_toBottomOf="@+id/frag_updaterestaurant_tb_veg_nonveg" />
 
     <ToggleButton
-        android:id="@+id/frag_newrestaurant_tb_veg_nonveg"
+        android:id="@+id/frag_updaterestaurant_tb_veg_nonveg"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="8dp"
@@ -94,7 +94,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/frag_newrestaurant_et_place" />
+        app:layout_constraintTop_toBottomOf="@+id/frag_updaterestaurant_et_place" />
 
 
 </android.support.constraint.ConstraintLayout>

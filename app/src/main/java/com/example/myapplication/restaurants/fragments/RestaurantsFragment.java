@@ -20,12 +20,10 @@ import com.example.myapplication.R;
 import com.example.myapplication.restaurants.adapters.RestaurantsListAdapter;
 import com.example.myapplication.restaurants.datatypes.Restaurant;
 import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
 import com.google.gson.reflect.TypeToken;
 
 import java.lang.reflect.Type;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 import static com.android.volley.Request.Method.GET;
@@ -88,7 +86,7 @@ public class RestaurantsFragment extends Fragment{
         }
 
         netRequests = Volley.newRequestQueue(getContext());
-        llProgressBarContainer = view.findViewById(R.id.frag_newrestaurant_ll_progressbar);
+        llProgressBarContainer = view.findViewById(R.id.frag_ll_progressbar);
 
         if(mRestaurantsDataset==null)
             mRestaurantsDataset = new ArrayList<>();

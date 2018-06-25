@@ -1,5 +1,8 @@
 package com.example.myapplication.restaurants.datatypes;
 
+import android.os.Parcel;
+import android.os.Parcelable;
+
 import com.google.gson.annotations.SerializedName;
 
 import java.net.URL;
@@ -9,7 +12,7 @@ import java.util.ArrayList;
  * Created by Pankaj on 01/06/18.
  */
 
-public class Restaurant {
+public class Restaurant implements Parcelable {
 
     private String id;
     private String name;
@@ -34,6 +37,28 @@ public class Restaurant {
 
     }
 
+    protected Restaurant(Parcel in) {
+        id = in.readString();
+        name = in.readString();
+        imgUrl = in.readString();
+        place = in.readString();
+        rating = in.readInt();
+        ratingMax = in.readInt();
+        vegOnly = in.readByte() != 0;
+    }
+
+    public static final Creator<Restaurant> CREATOR = new Creator<Restaurant>() {
+        @Override
+        public Restaurant createFromParcel(Parcel in) {
+            return new Restaurant(in);
+        }
+
+        @Override
+        public Restaurant[] newArray(int size) {
+            return new Restaurant[size];
+        }
+    };
+
     public String getId() {
         return id;
     }
@@ -50,6 +75,8 @@ public class Restaurant {
         this.name = name;
     }
 
+
+
     public URL getImgUrl() {
 
         try{
@@ -59,6 +86,20 @@ public class Restaurant {
         }
 
         return null;
+    }
+
+    public String getUrl() {
+
+       return imgUrl;
+
+    }
+
+    public boolean isVegOnly() {
+        return vegOnly;
+    }
+
+    public void setVegOnly(boolean vegOnly) {
+        this.vegOnly = vegOnly;
     }
 
     public void setImgUrl(String imgUrl) {
@@ -149,4 +190,19 @@ public class Restaurant {
 
     }
 
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeString(id);
+        dest.writeString(name);
+        dest.writeString(imgUrl);
+        dest.writeString(place);
+        dest.writeInt(rating);
+        dest.writeInt(ratingMax);
+        dest.writeByte((byte) (vegOnly ? 1 : 0));
+    }
 }
